@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>L.Joyce Bsc.cs Portfolio</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+  * { margin:0; padding:0; box-sizing: border-box; }
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: #0d141f;
+    color: #d3f1e4;
+    scroll-behavior: smooth;
+  }
+  header {
+    position: fixed; top: 0; left: 0; right: 0;
+    background: rgba(13, 20, 31, 0.9);
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 60px; z-index: 1000;
+    backdrop-filter: saturate(180%) blur(15px);
+  }
+  header h1 {
+    color: #ffffffdc;
+    font-size: 1.85rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+  }
+  nav a {
+    margin-left: 30px;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #a4cabb;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+  }
+  nav a:hover { color: #545cd4; cursor: pointer; }
+  section {
+    min-height: 100vh;
+    padding: 140px 50px 60px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .home {
+    width: 100%;
+    background:
+      linear-gradient(to bottom, rgba(199, 224, 221, 0), rgba(13,20,31,0.65)),
+      url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1650&q=80') no-repeat center/cover;
+    color: #ffffff;
+    justify-content: center;
+  }
+  .home h2 {
+    font-weight: 900;
+    font-size: 3.8rem;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(50deg, #e5ff00, #c8ff00);
+    -webkit-text-fill-color: transparent;
+    
+  }
+  .home p {
+    font-weight: 600;
+    font-size: 1.3rem;
+    max-width: 700px;
+    margin-bottom: 25px;
+  }
+  .btn {
+    padding: 16px 55px;
+    background: linear-gradient(90deg,#54d498,#40ad91);
+    border-radius: 55px;
+    font-weight: 700;
+    font-size: 1.3rem;
+    border: none;
+    color: #0d141f;
+    cursor: pointer;
+    box-shadow: 0 6px 20px #54d498bb;
+    transition: filter 0.3s ease;
+  }
+  .btn:hover { filter: brightness(1.2); }
+  .about {
+    max-width: 850px;
+    background: linear-gradient(135deg, #101f1a, #1d2d25);
+    border-radius: 35px;
+    padding: 90px 60px;
+    box-shadow: 0 15px 55px #54d499cc;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto 80px;
+  }
+  .about h2 {
+    color: #54d498;
+    font-weight: 900;
+    font-size: 3.4rem;
+    margin-bottom: 50px;
+    letter-spacing: 3px;
+  }
+  .about-img {
+    width: 280px;
+    height: 280px;
+    border-radius: 25px;
+    border: 7px solid #40ad91;
+    box-shadow: 0 0 25px #40ad9188;
+    object-fit: cover;
+    margin-bottom: 40px;
+  }
+  .about p {
+    font-weight: 500;
+    font-size: 1.3rem;
+    max-width: 700px;
+    color: #a3cfba;
+    line-height: 1.7;
+  }
+
+  .projects {
+    max-width: 1150px;
+    padding: 60px 50px;
+  }
+  .projects h2 {
+    color: #40ad91;
+    font-size: 3rem;
+    font-weight: 900;
+    margin-bottom: 50px;
+    letter-spacing: 2.5px;
+    text-align: center;
+  }
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+    gap: 40px;
+  }
+  .project-card {
+    background: #0e2b27;
+    border-radius: 25px;
+    box-shadow: 0 16px 48px rgba(64, 173, 145, 0.55);
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+  }
+  .project-card:hover { transform: translateY(-12px); }
+  .project-card img {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+  }
+  .project-card h3 {
+    background: linear-gradient(90deg, #c0e5f0, #40ad91);
+    padding: 20px;
+    margin: 0;
+    color: #0f211b;
+    font-weight: 900;
+    font-size: 1.4rem;
+    text-align: center;
+    letter-spacing: 1.6px;
+  }
+  .contact {
+    max-width: 650px;
+    margin: 80px auto 60px;
+    background: linear-gradient(135deg, #405680, #54d498);
+    padding: 75px 60px;
+    border-radius: 55px;
+    box-shadow: 0 20px 65px rgba(12, 20, 18, 0.6);
+    color: #0f211b;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .contact h2 {
+    font-size: 2.8rem;
+    font-weight: 900;
+    margin-bottom: 50px;
+    letter-spacing: 3px;
+  }
+  form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+  form input,
+  form textarea {
+    padding: 20px 35px;
+    font-size: 1.25rem;
+    border-radius: 50px;
+    border: none;
+    outline: none;
+    resize: none;
+    background: #b6ecdc;
+    color: #074c38;
+  }
+  form input::placeholder,
+  form textarea::placeholder { color: #43ab92aa; }
+  form button {
+    border-radius: 60px;
+    border: none;
+    padding: 22px 0;
+    font-weight: 900;
+    font-size: 1.3rem;
+    cursor: pointer;
+    background: #124731;
+    color: #a5e6cb;
+    box-shadow: 0 0 22px #40ad9180;
+    transition: background 0.3s ease;
+  }
+  form button:hover {
+    background: #40ad91;
+    color: #0f211b;
+  }
+  footer {
+    background: #0b2518;
+    color: #40ad9177;
+    font-weight: 700;
+    padding: 25px;
+    text-align: center;
+    letter-spacing: 2px;
+  }
+  /* Responsive */
+  @media (max-width: 860px) {
+    header {
+      flex-direction: column;
+      padding: 30px 20px;
+    }
+    nav {
+      margin-top: 20px;
+    }
+    nav a {
+      margin-left: 0;
+      margin-right: 20px;
+      font-size: 1.1rem;
+    }
+    section {
+      padding: 130px 30px 70px;
+    }
+    .home h2 {
+      font-size: 3rem;
+    }
+    .about h2 {
+      font-size: 2.8rem;
+      margin-bottom: 40px;
+    }
+    .about-img {
+      width: 180px;
+      height: 180px;
+      margin-bottom: 30px;
+    }
+    .contact {
+      padding: 65px 40px;
+      max-width: 95%;
+      border-radius: 55px;
+    }
+    form button {
+      font-size: 1.2rem;
+      padding: 18px;
+    }
+  }
+  @media (max-width: 480px) {
+    .project-grid {
+      grid-template-columns: 1fr;
+      gap: 35px;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>L.Joyce Bsc.cs</h1>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+<section id="home" class="home">
+  <h2>welcome to my portfolio</h2>
+  <p> I'm L.Joyce Bsc.computer science & web developer  creativity with technology</p>
+  <button class="btn" onclick="location.href='#projects'">MY PROJECTS</button>
+</section>
+<section id="about" class="about">
+  <h2>About Me</h2>
+  <img src="Image.jpg" alt="L.Joyce photo" class="about-img" />
+
+  <p>Hi! I'm <strong>L.Joyce</strong>, a passionate B.Sc. Computer Science specializing in modern web and cyber systems development.</p>
+</section>
+<section id="projects" class="projects">
+  <h2>Projects</h2>
+  <div class="project-grid">
+    <div class="project-card">
+      <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80" alt="Creative Portfolio" />
+      <h3>Creative Portfolio</h3>
+    </div>
+    <div class="project-card">
+      <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80" alt="Online Store" />
+      <h3>python programs</h3>
+    </div>
+    <div class="project-card">
+      <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600&q=80" alt="Blog CMS" />
+      <h3>c++ coding</h3>
+    </div>
+  </div>
+</section>
+<section id="contact" class="contact">
+  <h2>Contact Me</h2>
+  <form>
+    <input type="text" placeholder="Your Name" required />
+    <input type="email" placeholder="Your Email" required />
+    <textarea rows="5" placeholder="Your Message"></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+</section>
+<footer>
+  &copy; 2025 @ L.Joyce Bsc.cs #
+</footer>
+<style>
+.social-icons {
+  display: flex;
+  gap: 15px; /* Adjust the space between icons */
+  justify-content: center;
+  align-items: center;
+}
+
+.social-icon {
+  font-size: 35px; /* Adjust the size of the icons */
+  transition: transform 0.3s ease; /* Smooth hover effect */
+}
+
+.social-icon:hover {
+  transform: translateY(-5px); /* Moves the icon up on hover */
+}
+
+/* Brand colors for each logo */
+.whatsapp-icon {
+  color: #25D366;
+}
+
+.x-icon {
+  color: #000000;
+}
+
+.instagram-icon {
+  color: #E1306C;
+}
+
+.github-icon {
+  color: #000000;
+}
+</style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<div class="social-icons">
+  <span class="social-icon whatsapp-icon">
+    <i class="fab fa-whatsapp"></i>
+  </span>
+  <span class="social-icon x-icon">
+    <i class="fab fa-x-twitter"></i>
+  </span>
+  <span class="social-icon instagram-icon">
+    <i class="fab fa-instagram"></i>
+  </span>
+  <span class="social-icon github-icon">
+    <i class="fab fa-github"></i>
+  </span>
+</div>
+<link rel="stylesheet" href="style.css">
+</body>
+</html>

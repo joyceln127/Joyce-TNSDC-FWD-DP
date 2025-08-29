@@ -1,0 +1,14 @@
+.home h2 {
+  font-weight: 900;
+  font-size: 3.8rem;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(50deg, #e5ff00, #c8ff00);
+  background-clip: text; /* Add this line for full compatibility */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover; /* ensures aspect ratio and quality */
+}
